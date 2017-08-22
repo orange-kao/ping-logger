@@ -93,10 +93,11 @@ class StatGenerator
     result["Time of last entry"] = tts.gen_time_string(@time_last)
     result["Largest gap between each entry (seconds)"] = @time_gap_max.round(2)
 
+    result["Number of ping attempt"] = @entry_count
     result["Respond rate"] = "#{(@got_respond_count.to_f / @entry_count * 100).round(2)}%"
     result["Average round trip time (ms)"] = (@rtt_sum.to_f / @got_respond_count).round(2)
     result["Highest ping success in a row"] = @success_in_a_row_max
-    result["Highest ping fail in a row"] = @fail_in_a_row_max
+    result["Highest ping failure in a row"] = @fail_in_a_row_max
 
     result["The host always respond"] = (@host_success_arr - @host_fail_arr).sort.join(" ")
     result["The host never respond"]  = (@host_fail_arr - @host_success_arr).sort.join(" ")
